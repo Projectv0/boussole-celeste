@@ -1,0 +1,20 @@
+# Ce que GitHub Pages ne doit pas publier.
+#
+# Le dépôt est public, mais seuls le site et ses ressources doivent être servis : les
+# scripts, les sources des textes et le code du Worker restent versionnés sans être
+# en ligne (constat de l'audit de Boussole : ils répondaient en 200 sur le domaine).
+exclude:
+  - "*.py"
+  - "*.md"
+  - "*.json"
+  - "*.swift"
+  - outils/
+  - donnees/
+  - site/
+  - da/
+  - worker/
+  - societe/
+  - polices/ttf/
+  - .claude/
+include:
+  - manifest.webmanifest

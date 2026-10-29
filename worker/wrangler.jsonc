@@ -1,0 +1,26 @@
+{
+  // Le Worker de Boussole céleste : vérification d'achat, mesure d'audience, code à offrir.
+  // Même compte Cloudflare que Boussole émotionnelle, mais un Worker et une base à part :
+  // les deux sites ne partagent ni compteur, ni codes, ni secrets.
+  //
+  //   wrangler d1 create boussole-celeste          crée la base en Europe (option --location=weur
+  //                                                 ou la région EEUR, voir A-FAIRE), renvoie son identifiant
+  //   wrangler d1 execute boussole-celeste --remote --file=schema.sql
+  //   wrangler deploy                               met le Worker en ligne
+  //   wrangler secret put MESURE_CLE                à taper par Martial : la valeur ne s'affiche nulle part
+  //   wrangler secret put STRIPE_CLE                idem, clé Stripe restreinte en lecture
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "boussole-celeste",
+  "main": "verification.js",
+  "compatibility_date": "2026-09-01",
+  "d1_databases": [
+    {
+      "binding": "MESURE",
+      "database_name": "boussole-celeste",
+      // écrit à l'étape 6, après « wrangler d1 create »
+      "database_id": "A-RENSEIGNER"
+    }
+  ],
+  // Les secrets ne sont JAMAIS écrits ici : ce fichier est versionné.
+  "observability": { "enabled": true }
+}

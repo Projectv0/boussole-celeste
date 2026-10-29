@@ -1,0 +1,558 @@
+<div class="aura" aria-hidden="true"></div>
+<div class="ciel" aria-hidden="true"></div>
+
+<nav class="floatnav" aria-label="Navigation principale">
+  <button class="brand" id="navHome" title="Revenir à l’accueil">
+    <span class="logo" aria-hidden="true">@@LOGO@@</span>
+    <span>Boussole céleste</span>
+  </button>
+  <span class="privacy-chip" role="note" aria-label="100 % privé : tes réponses et ton journal ne quittent jamais ton navigateur" title="Tes réponses et ton journal ne quittent jamais ton navigateur.">
+    <span class="dot" aria-hidden="true"></span><span class="txt">100&nbsp;% privé</span>
+  </span>
+</nav>
+
+<main>
+
+  <!-- ——————— ACCUEIL ——————— -->
+  <section id="v-accueil" class="view active" aria-label="Accueil">
+    <div class="hero">
+      @@HERO_CIEL@@
+      <div class="eyebrow reveal">Se comprendre par le ciel</div>
+      <h1 class="reveal">Ton ciel du moment,<br>lu dans ce que tu vis.</h1>
+      <p class="sub reveal">Douze énergies, une par signe du zodiaque. Seize scènes du quotidien mesurent la place que chacune prend dans ta vie en ce moment. Rien n’est prédit&nbsp;: tout part de toi.</p>
+      <div class="cta-row reveal">
+        <button class="btn btn-primary" id="btnStart">Commencer le test <span class="ico" aria-hidden="true">→</span></button>
+        <button class="btn btn-ghost" id="btnVersMethode">La méthode <span class="ico" aria-hidden="true">→</span></button>
+      </div>
+      <div class="hero-meta reveal">
+        <span>16 situations du quotidien</span>
+        <span>15 à 20 minutes</span>
+        <span>Tes réponses restent dans ton navigateur</span>
+      </div>
+      <div class="callout callout-privacy reveal" id="repriseBox" hidden style="max-width:38rem; margin:2rem auto 0; text-align:left">
+        <span class="emo" aria-hidden="true">✦</span>
+        <div style="flex:1">
+          <p id="repriseTexte"></p>
+          <div style="display:flex; gap:.7rem; flex-wrap:wrap; margin-top:.9rem">
+            <button class="btn btn-primary" id="btnReprendre">Reprendre mon test <span class="ico" aria-hidden="true">→</span></button>
+            <button class="btn btn-ghost" id="btnAbandonner">Repartir de zéro <span class="ico" aria-hidden="true">↺</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section reveal">
+      <div class="intro-grid">
+        <div class="shell"><div class="core">
+          <div class="res-kicker">À quoi ça sert&nbsp;?</div>
+          <p>L’astrologie décrit douze grandes façons d’être au monde&nbsp;: <b>oser, ancrer, relier, protéger</b>, et huit autres. Ici, on ne s’en sert pas pour prédire. On s’en sert comme d’un langage, pour mettre des mots sur ce qui prend de la place dans ta vie en ce moment.</p>
+          <p>Mettre un nom sur une énergie, c’est la reconnaître quand elle se présente. Tu vois mieux quand tu fonces, quand tu tiens bon, quand tu te protèges. Et tu choisis plus librement ce que tu en fais.</p>
+        </div></div>
+        <div class="shell"><div class="core">
+          <div class="res-kicker">L’esprit du test</div>
+          <p>Pas de questions abstraites, et pas de signe à cocher. Tu te projettes dans <b>des situations concrètes</b>&nbsp;: une réunion, un repas de famille, un train supprimé. Pour chacune, tu dis à quel point chaque réaction proposée te ressemble.</p>
+          <p>Tu ne sais pas quelle énergie se cache derrière chaque réaction. C’est voulu&nbsp;: tu réponds comme toi, et pas comme ton signe. À la fin, chaque énergie reçoit une <b>note de 0 à 10</b>, avec le nombre de mesures sur lequel elle repose.</p>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="section" id="deroule">
+      <div class="section-head reveal">
+        <div class="eyebrow">Le déroulé</div>
+        <h2>Quatre temps, à ton rythme</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><div class="shell"><div class="core">
+          <div class="step-num">01</div>
+          <h3>Découvrir</h3>
+          <p>Les douze énergies du test&nbsp;: ce que chacune apporte, et comment elle se manifeste.</p>
+          <span class="mins">≈ 2 min</span>
+        </div></div></div>
+        <div class="step reveal"><div class="shell"><div class="core">
+          <div class="step-num">02</div>
+          <h3>Partir du réel</h3>
+          <p>Si tu veux, note jusqu’à cinq moments vécus récemment. Ils comptent dans tes résultats, restent sur ton appareil et raccourcissent le test.</p>
+          <span class="mins">2 min par moment</span>
+        </div></div></div>
+        <div class="step reveal"><div class="shell"><div class="core">
+          <div class="step-num">03</div>
+          <h3>Se projeter</h3>
+          <p>Seize situations du quotidien, moins si tu as noté des moments. Pour chacune, tu dis à quel point chaque réaction te ressemble.</p>
+          <span class="mins">≈ 12 min</span>
+        </div></div></div>
+        <div class="step reveal"><div class="shell"><div class="core">
+          <div class="step-num">04</div>
+          <h3>Se comprendre</h3>
+          <p>Une note par énergie, ta roue en un coup d’œil, ton ciel du moment et une analyse personnalisée.</p>
+          <span class="mins">Tes résultats</span>
+        </div></div></div>
+      </div>
+
+      <div class="callout callout-privacy reveal">
+        <span class="emo" aria-hidden="true">✦</span>
+        <p><strong>Tout se passe dans ton navigateur.</strong> Tes réponses au test ne sont jamais envoyées. Un brouillon reste sur ton appareil pendant sept jours, pour que tu puisses reprendre, puis il s’efface. Ton journal et ton signe de naissance, si tu les donnes, restent eux aussi sur ton appareil.</p>
+      </div>
+      <div class="callout callout-warn reveal">
+        <span class="emo" aria-hidden="true">☾</span>
+        <p><strong>Un langage pour réfléchir, pas une prédiction.</strong> Ce test t’aide à mieux te connaître. Il ne prédit rien, ne pose aucun diagnostic et ne remplace l’avis d’aucun professionnel.</p>
+      </div>
+    </div>
+
+    <div class="center-cta reveal">
+      <button class="btn btn-primary" id="btnStart2">Commencer le test <span class="ico" aria-hidden="true">→</span></button>
+    </div>
+  </section>
+
+  <!-- ——————— LES DOUZE ÉNERGIES ——————— -->
+  <section id="v-emotions" class="view" aria-label="Les douze énergies">
+    <div class="section-head">
+      <div class="eyebrow">Étape 1 · Découvrir</div>
+      <h2>Les douze énergies du test</h2>
+      <p>Une par signe du zodiaque, chacune désignée par un verbe. Trois énergies par élément, le Feu, la Terre, l’Air et l’Eau. Et quatre par façon d’avancer&nbsp;: lancer, tenir, s’adapter.</p>
+    </div>
+    <div class="callout callout-heart">
+      <span class="emo" aria-hidden="true">✦</span>
+      <p><strong>Aucune énergie n’est bonne ou mauvaise.</strong> Chacune a sa lumière, ce qu’elle apporte, et son ombre, ce qui arrive quand elle prend toute la place. Tout le monde porte les douze en soi&nbsp;: ce qui change, c’est la place que chacune occupe en ce moment. Touche une carte pour la déplier.</p>
+    </div>
+    <div class="emo-grid" id="emoGrid"></div>
+    <div class="center-cta">
+      <button class="btn btn-primary" id="btnToTest">Continuer <span class="ico" aria-hidden="true">→</span></button>
+      <p style="margin-top:1rem; font-size:.88rem; color:var(--faint)">Tu pourras revenir lire ces cartes à tout moment après le test.</p>
+    </div>
+  </section>
+
+  <!-- ——————— LA MÉTHODE ——————— -->
+  <section id="v-methode" class="view" aria-label="La méthode">
+    <div class="test-wrap">
+      <div class="section-head">
+        <div class="eyebrow">En toute transparence</div>
+        <h2>La méthode</h2>
+        <p>Comment ce test fonctionne, ce qu’il mesure, et ce qu’il ne mesure pas. Tout se passe dans ton navigateur, et les règles sont ici.</p>
+      </div>
+      <div class="shell"><div class="core methode">
+        <h3>Ce que mesure Boussole céleste</h3>
+        <p>La <b>place</b> que chaque énergie occupe dans ta vie en ce moment&nbsp;: à quel point tes réactions la mettent en jeu quand la vie te bouscule. Ce n’est pas un portrait de ta personnalité, ni une mesure de ta santé, ni un diagnostic. C’est la photographie d’une période, prise sous un angle précis.</p>
+
+        <h3>L’astrologie, ici&nbsp;: ce qu’elle est, et ce qu’elle n’est pas</h3>
+        <p>Dans ce site, l’astrologie est <b>un langage de réflexion sur soi</b>. Ses douze signes forment un vocabulaire ancien, riche et parlant&nbsp;: oser, ancrer, relier, protéger, rayonner, affiner, équilibrer, transformer, explorer, bâtir, libérer, ressentir. On l’utilise pour nommer ce qui se passe en toi, comme on utiliserait une carte pour s’orienter.</p>
+        <p>Ce n’est <b>pas une science</b>, et ce site ne prétend pas que les astres agissent sur toi. Ce n’est <b>pas une prédiction</b>&nbsp;: rien ici ne dit ce qui va t’arriver, ni ce que tu devrais décider. Le site ne conseille aucune décision de vie, de santé, d’argent ou de relation, et ne remplace aucun professionnel.</p>
+        <p>C’est pourquoi le test ne part pas de ta date de naissance, mais de tes réactions. Ton signe de naissance n’entre dans aucun calcul. Tu peux le donner après tes résultats, par curiosité, pour le comparer à ce que tu vis.</p>
+
+        <h3>Le parcours, en quatre temps</h3>
+        <p><b>1. Les douze énergies.</b> Une carte par énergie&nbsp;: ce qu’elle est, à quoi elle sert, comment elle se manifeste.</p>
+        <p><b>2. Tes moments réels.</b> Juste avant le test, ton journal te propose de noter jusqu’à cinq moments vécus. Pour chacun, tu choisis les énergies qui étaient en jeu, une à trois, et leur force. Ils comptent dans le calcul, au même titre que les situations du test.</p>
+        <p><b>3. Les mises en situation.</b> Seize scènes du quotidien, dans dix-huit domaines&nbsp;: travail, famille, couple, amitié, argent, imprévu, réseaux sociaux, soirées… Chaque scène propose quatre à six réactions. Tu notes chacune de «&nbsp;pas du tout&nbsp;» à «&nbsp;énormément&nbsp;». Chaque réaction mesure une énergie, mais tu ne sais pas laquelle&nbsp;: c’est ce qui évite de répondre «&nbsp;comme son signe&nbsp;». Chaque moment noté dans le journal retire deux scènes, jusqu’à huit au minimum.</p>
+        <p><b>4. Tes résultats.</b> Une note par énergie, ta roue, tes éléments, ton ciel du moment et une analyse personnalisée.</p>
+
+        <h3>Le calcul</h3>
+        <p>Chaque cran vaut de 0 («&nbsp;pas du tout&nbsp;») à 4 («&nbsp;énormément&nbsp;»). La note d’une énergie part de la moyenne de ses crans, ramenée sur 10&nbsp;: tout à «&nbsp;énormément&nbsp;» donne 10, tout à «&nbsp;un peu&nbsp;» donne 2,5.</p>
+        <p>Cette moyenne est ensuite <b>tempérée par le nombre de mesures</b>. Dans le test complet, chaque énergie est mesurée au moins cinq fois, et sa note n’est pas touchée. Quand le test est raccourci par tes moments réels, une énergie peut n’être mesurée que deux ou trois fois&nbsp;: sa note est alors ramenée vers le bas, parce qu’on en sait moins. Une énergie mesurée une seule fois, même à fond, ne dépasse pas 4 sur 10.</p>
+        <p>Une énergie qui n’aurait été mesurée par aucune scène n’a pas de note du tout&nbsp;: le site écrit «&nbsp;pas mesurée&nbsp;», jamais zéro, et il ne bâtit aucune phrase dessus.</p>
+        <p>Les <b>éléments</b> (Feu, Terre, Air, Eau) et les <b>façons d’avancer</b> (lancer, tenir, s’adapter) sont la moyenne des énergies qui les composent. Ils se lisent comme des tendances, pas comme des verdicts.</p>
+        <p>Pour que refaire le test ait du sens, les seize scènes sont tirées d’une banque de vingt-quatre, en trois jeux qui tournent&nbsp;: d’un passage gardé au suivant, huit scènes changent.</p>
+
+        <h3>Les limites, franchement</h3>
+        <p>Ce test repose sur ce que tu déclares&nbsp;: il mesure la lecture que tu fais de toi-même. Se projeter dans une scène imaginée n’égale jamais l’expérience réelle, et c’est l’intérêt du journal. Tes notes bougent avec la fatigue, l’humeur et la période que tu traverses&nbsp;: c’est voulu, puisqu’on photographie un moment. Enfin, douze énergies ne disent pas tout de quelqu’un. Elles donnent des mots, et c’est déjà beaucoup.</p>
+
+        <h3>Tes données</h3>
+        <p>Tout est calculé dans ton navigateur. Tes réponses au test ne sont jamais envoyées. Un brouillon du test en cours reste sur ton appareil sept jours, pour que tu puisses reprendre. Ton journal, tes résultats gardés et ton signe de naissance, si tu les donnes, vivent uniquement sur ton appareil. Tu peux les exporter ou les effacer quand tu veux.</p>
+
+        <h3>Quand consulter</h3>
+        <p>Si une période te pèse durablement, en parler à un professionnel est une bonne porte&nbsp;: ton médecin, un psychologue. Si l’idée de te faire du mal apparaît, appelle le 3114, le numéro national de prévention du suicide, joignable jour et nuit. En cas d’urgence, le 15.</p>
+      </div></div>
+      <div class="center-cta">
+        <button class="btn btn-primary" id="btnMethodeRetour">Découvrir les douze énergies <span class="ico" aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——————— LE JOURNAL (le réel avant le test) ——————— -->
+  <section id="v-perso" class="view" aria-label="Ton journal">
+    <div class="test-wrap">
+      <div class="section-head">
+        <div class="eyebrow">Étape 2 · Partir du réel</div>
+        <h2>Ton journal</h2>
+        <p>Le réel d’abord. Si un moment récent t’a marqué·e, une dispute, une bonne nouvelle, un message resté sans réponse, note-le ici. Il rejoindra ton journal, comptera dans tes résultats et raccourcira le test, jusqu’à cinq moments par passage. Si rien ne te vient, commence simplement le test.</p>
+      </div>
+      <div class="callout callout-privacy">
+        <span class="emo" aria-hidden="true">✦</span>
+        <p><strong>Tout reste sur cet appareil.</strong> Tes moments rejoignent ton journal, dans ce navigateur uniquement&nbsp;: ils ne sont jamais transmis. Pense à exporter une sauvegarde de temps en temps, avec les boutons en bas de page.</p>
+      </div>
+      <div class="shell" style="margin-top:1.1rem"><div class="core">
+        <div class="res-kicker">Les mêmes sept questions, à chaque fois</div>
+        <p class="j-label">1 · Qu’est-ce qui s’est passé&nbsp;?</p>
+        <textarea class="j-note" id="jNote" rows="2" maxlength="500" aria-label="Le moment, en quelques mots" placeholder="Par exemple : j’ai proposé une idée en réunion, et personne n’a réagi."></textarea>
+        <div class="j-ctx" id="jCtx" style="margin-top:.7rem"></div>
+
+        <p class="j-label">2 · Ton corps, là, il est comment&nbsp;?</p>
+        <div class="j-ctx" id="jCorps"></div>
+
+        <p class="j-label">3 · Qu’est-ce que tu remarques physiquement&nbsp;? <span>(facultatif)</span></p>
+        <div class="j-ctx" id="jSens"></div>
+
+        <p class="j-label">4 · Quelles énergies étaient en jeu&nbsp;? <span>(1 à 3)</span></p>
+        <details class="j-triche"><summary>Besoin d’aide pour choisir&nbsp;? Ouvre l’antisèche des douze</summary><div id="jTriche"></div></details>
+        <div class="j-emos" id="jEmos"></div>
+        <div id="jIntensites"></div>
+
+        <div id="jConfBloc" class="j-attente">
+          <p class="j-label">5 · À quel point es-tu sûr·e de ton choix&nbsp;?</p>
+          <p class="j-attente-note" id="jConfAttente">Choisis d’abord une énergie à la question 4.</p>
+          <div class="j-ctx" id="jConf"></div>
+        </div>
+
+        <p class="j-label">6 · Qu’est-ce que ça te donne envie de faire&nbsp;? <span>(facultatif)</span></p>
+        <div class="j-ctx" id="jElan"></div>
+
+        <p class="j-label">7 · Qu’est-ce qui compte, là-dedans&nbsp;? <span>(2 au plus, facultatif)</span></p>
+        <div class="j-ctx" id="jImp"></div>
+
+        <div style="text-align:center; margin-top:1.4rem">
+          <button class="btn btn-primary" id="btnMomentAjout" disabled>Ajouter au journal <span class="ico" aria-hidden="true">✎</span></button>
+        </div>
+        <p class="copy-feedback" id="jFeedback" role="status"></p>
+        <p style="text-align:center; font-size:.8rem; color:var(--faint)" id="jStockNote"></p>
+      </div></div>
+      <div class="test-nav">
+        <button class="btn btn-ghost" id="btnPersoRetour"><span class="ico" style="order:-1" aria-hidden="true">←</span> Les énergies</button>
+        <button class="btn btn-primary" id="btnPersoContinuer">Commencer le test <span class="ico" aria-hidden="true">→</span></button>
+        <div class="next-hint" id="persoCompte" style="text-align:center"></div>
+      </div>
+      <div id="jMotifs"></div>
+      <div id="jHistorique"></div>
+      <div class="res-actions" id="jActions" hidden>
+        <button class="btn btn-ghost" id="btnJournalExport">Exporter une sauvegarde <span class="ico" aria-hidden="true">⬇</span></button>
+        <label class="btn btn-ghost" for="jImport" style="cursor:pointer">Importer <span class="ico" aria-hidden="true">⬆</span></label>
+        <input type="file" id="jImport" accept=".json,application/json" class="input-fichier">
+        <button class="btn btn-ghost" id="btnJournalVider">Tout effacer <span class="ico" aria-hidden="true">✕</span></button>
+      </div>
+      <p class="copy-feedback" id="jFeedback2" role="status"></p>
+      <div class="callout callout-warn" id="jIndispo" hidden>
+        <span class="emo" aria-hidden="true">!</span>
+        <p><strong>Ce navigateur ne garde rien.</strong> Le stockage local est indisponible ici (navigation privée, ou réglage du navigateur). Tes moments compteront pour ce test, mais ne seront pas gardés.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——————— LE TEST ——————— -->
+  <section id="v-test" class="view" aria-label="Le questionnaire">
+    <div class="test-wrap">
+      <div class="eyebrow" style="margin-bottom:1.2rem">Étape 3 · Se projeter</div>
+      <div class="progress-zone">
+        <div class="progress-top">
+          <span class="q-domain" id="qDomain">Travail</span>
+          <span class="q-count" id="qCount">1 / 16</span>
+        </div>
+        <div class="track" role="progressbar" aria-label="Progression du test" aria-valuemin="1" aria-valuemax="16"><div class="fill" id="qFill"></div></div>
+      </div>
+      <div class="q-card" id="qCard">
+        <div class="shell"><div class="core">
+          <p class="q-situation" id="qText"></p>
+          <div class="q-ask">À quel point chaque réaction te ressemble&nbsp;?</div>
+          <p class="eval-legende">Note chaque réaction, de «&nbsp;pas du tout&nbsp;» à «&nbsp;énormément&nbsp;». Il n’y a pas de bonne réponse&nbsp;: plusieurs peuvent te ressembler, ou aucune.</p>
+          <div class="eval-rows" id="evalRows"></div>
+          <button class="btn-rien" id="btnRien">Tout le reste à «&nbsp;pas du tout&nbsp;»</button>
+        </div></div>
+        <div class="test-nav">
+          <button class="btn btn-ghost" id="btnPrev"><span class="ico" style="order:-1" aria-hidden="true">←</span> Précédente</button>
+          <button class="btn btn-primary" id="btnNext" disabled>Suivante <span class="ico" aria-hidden="true">→</span></button>
+          <div class="next-hint" id="nextHint" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ——————— LE DOSSIER ——————— -->
+  <section id="v-rapport" class="view" aria-label="Ton dossier complet">
+    <div class="section-head no-print">
+      <div class="eyebrow">Ton dossier complet</div>
+      <h2>Ton dossier personnalisé</h2>
+      <p>Lis-le tranquillement ici, et télécharge-le en PDF&nbsp;: c’est ta copie, à garder et à relire.</p>
+      <div style="display:flex; gap:.9rem; flex-wrap:wrap; margin-top:1.4rem">
+        <button class="btn btn-primary" id="btnRapportPdf">Télécharger en PDF <span class="ico" aria-hidden="true">⬇</span></button>
+        <button class="btn btn-ghost" id="btnRapportCarte">Ma carte à partager <span class="ico" aria-hidden="true">✦</span></button>
+        <button class="btn btn-ghost" id="btnRapportRetour"><span class="ico" style="order:-1" aria-hidden="true">←</span> Retour aux résultats</button>
+      </div>
+      <p style="font-size:.84rem; color:var(--faint); margin-top:.8rem">Dans la fenêtre d’impression qui s’ouvre, choisis «&nbsp;Enregistrer au format PDF&nbsp;».</p>
+    </div>
+    <div class="rapport" id="rapportContenu"></div>
+  </section>
+
+  <!-- ——————— RÉSULTATS ——————— -->
+  <section id="v-resultats" class="view" aria-label="Tes résultats">
+    <div class="section-head">
+      <div class="eyebrow">Étape 4 · Se comprendre</div>
+      <h2>Voici ton ciel du moment</h2>
+      <p id="resDate"></p>
+      <p class="res-rappel">@@RAPPEL@@</p>
+    </div>
+
+    <div class="callout callout-privacy" id="gardeBox" hidden>
+      <span class="emo" aria-hidden="true">✦</span>
+      <div style="flex:1">
+        <p id="gardeTexte"></p>
+        <div class="j-tags" id="gardeEvo" style="margin-top:.55rem"></div>
+        <button class="btn btn-ghost" id="btnGarder" style="margin-top:.8rem">Garder mes résultats sur cet appareil</button>
+      </div>
+    </div>
+
+    <div class="res-grid">
+      <div class="res-card res-span-12 ciel-carte"><div class="shell"><div class="core">
+        <div class="res-kicker" style="justify-content:center">Ton ciel du moment</div>
+        <p class="ciel-titre" id="cielTitre"></p>
+        <p class="ciel-phrase" id="cielPhrase"></p>
+      </div></div></div>
+
+      <div class="res-card res-span-4"><div class="shell"><div class="core">
+        <div class="res-kicker">Tes trois énergies les plus présentes</div>
+        <div class="podium" id="resTop3"></div>
+      </div></div></div>
+
+      <div class="res-card res-span-4"><div class="shell"><div class="core">
+        <div class="res-kicker">Les plus discrètes</div>
+        <div class="low-list" id="resLow"></div>
+        <p class="res-note" id="resLowNote"></p>
+      </div></div></div>
+
+      <div class="res-card res-span-4"><div class="shell"><div class="core">
+        <div class="res-kicker">Tes éléments</div>
+        <div class="jauges" id="resElements"></div>
+        <p class="res-note" id="resElementsNote"></p>
+      </div></div></div>
+
+      <div class="res-card res-span-5"><div class="shell"><div class="core">
+        <div class="res-kicker">Ta roue en un coup d’œil</div>
+        <div class="roue-wrap" id="roueWrap"></div>
+        <div class="roue-legende" id="roueLegende"></div>
+      </div></div></div>
+
+      <div class="res-card res-span-7"><div class="shell"><div class="core">
+        <div class="res-kicker">Les douze énergies, de la plus présente à la plus discrète</div>
+        <p class="eval-legende" style="margin:-.2rem 0 .9rem">La note dit la place de l’énergie dans tes réponses. Le nombre de mesures dit sur combien de scènes elle repose.</p>
+        <div class="bars" id="barsWrap"></div>
+      </div></div></div>
+
+      <div class="res-card res-span-12"><div class="shell"><div class="core">
+        <div class="res-kicker">Ton analyse, énergie par énergie</div>
+        <p style="font-size:.94rem; color:var(--muted)">Chaque texte s’adapte à ta note. Les trois premières cartes sont ouvertes&nbsp;: déplie les autres à ton rythme.</p>
+        <div class="analyses" id="analysesWrap"></div>
+      </div></div></div>
+
+      <div class="res-card res-span-12 synthese"><div class="shell"><div class="core">
+        <div class="res-kicker">Ce que tes résultats racontent</div>
+        <div id="syntheseWrap"></div>
+      </div></div></div>
+
+      <div class="res-card res-span-12" id="signeBox"><div class="shell"><div class="core">
+        <div class="res-kicker">@@SIGNE_TITRE@@</div>
+        <p style="font-size:.96rem; color:var(--muted)">@@SIGNE_INTRO@@</p>
+        <div class="signe-form" id="signeForm">
+          <label for="signeJour" class="input-fichier">Jour de naissance</label>
+          <select id="signeJour" aria-label="Jour de naissance"></select>
+          <label for="signeMois" class="input-fichier">Mois de naissance</label>
+          <select id="signeMois" aria-label="Mois de naissance"></select>
+          <button class="btn btn-ghost" id="btnSigne">Voir <span class="ico" aria-hidden="true">→</span></button>
+        </div>
+        <p class="signe-texte" id="signeLimite" hidden></p>
+        <div class="signe-choix" id="signeChoix" hidden></div>
+        <div id="signeResultat" hidden>
+          <div class="signe-res" id="signeCases"></div>
+          <p class="signe-texte" id="signeTexte"></p>
+          <p class="signe-texte" id="signeRang"></p>
+          <p class="signe-texte" style="font-size:.86rem; color:var(--faint)">@@SIGNE_GARDE@@ <button class="linklike" id="btnSigneEffacer">Effacer mon signe</button></p>
+        </div>
+        <p class="copy-feedback" id="signeInfo" role="status"></p>
+      </div></div></div>
+
+      <div class="res-card res-span-12"><div class="shell"><div class="core">
+        <div class="res-kicker">Comparer avec un proche</div>
+        <p style="font-size:.96rem; color:var(--muted)">Chacun fait le test de son côté, puis vous échangez vos codes&nbsp;: vos deux profils s’affichent côte à côte, avec ce que vous partagez et ce qui vous distingue. <b>Rien n’est envoyé</b>&nbsp;: le code contient simplement tes douze notes. On compare des profils mesurés, jamais des signes de naissance.</p>
+        <div class="comp-actions">
+          <button class="btn btn-primary" id="btnCopierCode">Copier mon code <span class="ico" aria-hidden="true">⧉</span></button>
+          <input class="cle-input comp-input" id="compCode" aria-label="Code d’un proche à comparer" placeholder="Colle ici le code d’un proche (BC1-…)" autocomplete="off" spellcheck="false">
+          <button class="btn btn-ghost" id="btnComparer">Comparer <span class="ico" aria-hidden="true">→</span></button>
+        </div>
+        <p class="copy-feedback" id="compInfo" role="status"></p>
+        <div id="compResultat" hidden>
+          <div id="compResume" style="font-size:.96rem; color:var(--muted); margin:1rem 0 1.2rem"></div>
+          <div class="comp-legende"><span><span class="pastille moi"></span> toi</span><span><span class="pastille autre"></span> l’autre personne</span></div>
+          <div id="compTable" class="comp-table"></div>
+        </div>
+      </div></div></div>
+
+      <div class="res-card res-span-12" id="venteBox" hidden><div class="shell"><div class="core vente">
+        <div class="res-kicker">Pour aller plus loin</div>
+        <div class="vente-grid">
+          <div>
+            <h3>Ton dossier complet</h3>
+            <p class="vente-intro">Tes résultats méritent mieux qu’un survol. Le dossier reprend ton profil et l’explore en profondeur, fiche par fiche, à lire ici et à garder en PDF.</p>
+            <ul class="vente-liste">
+              <li><b>12 fiches détaillées</b>&nbsp;: ce que chaque énergie est, comment elle vit chez toi selon ta note, et son point de vigilance</li>
+              <li><b>36 pratiques concrètes</b>&nbsp;: trois par énergie, de la plus simple à la plus engageante</li>
+              <li><b>Tes croisements décodés</b>&nbsp;: ce que tes énergies racontent quand on les lit ensemble</li>
+              <li><b>Ton plan de 30 jours</b>&nbsp;: quatre semaines, construites sur ton profil</li>
+              <li><b>Ta carte à partager</b>&nbsp;: ta roue et ton top 3 au format post, ton énergie la plus présente au format story</li>
+            </ul>
+            <p class="vente-note">Comme le test, le dossier est préparé <b>dans ton navigateur</b>&nbsp;: tes réponses ne sont jamais envoyées. Après le paiement, cet onglet se débloque tout seul. <b>Garde-le ouvert</b>&nbsp;: c’est lui qui contient tes réponses.</p>
+          </div>
+          <div class="vente-cta">
+            <span class="offre-badge" id="venteBadge">Tarif de lancement</span>
+            <div class="vente-prix" id="ventePrix">5,99 €</div>
+            <div class="vente-prix-note">paiement unique · TVA incluse</div>
+            <p class="vente-complement" id="venteComplement" hidden>Tes 1,99 € sont déjà réglés&nbsp;: il ne reste que la différence.</p>
+            <label class="cgv-case" id="venteCgvBox"><input type="checkbox" id="venteCgv"><span>J’accepte les <a href="legal/cgv.html" target="_blank" rel="noopener">conditions de vente</a> et je renonce à mon droit de rétractation pour un accès immédiat.</span></label>
+            <a class="btn btn-primary" id="btnAcheter" target="_blank" rel="noopener">Obtenir mon dossier <span class="ico" aria-hidden="true">→</span></a>
+            <button class="btn btn-ghost" id="btnDejaCle">J’ai déjà payé <span class="ico" aria-hidden="true">✦</span></button>
+          </div>
+        </div>
+      </div></div></div>
+
+      <div class="res-card res-span-12" id="cadeauBox" hidden><div class="shell"><div class="core">
+        <div class="res-kicker">Offrir le test à quelqu’un</div>
+        <p style="font-size:.96rem; color:var(--muted)">Ton dossier te permet d’offrir le test à une personne&nbsp;: un code unique, à lui envoyer. Elle fait le test de son côté, et ses résultats s’ouvrent sans qu’elle ait rien à payer. Ce sont bien <b>ses résultats</b> qu’elle découvre&nbsp;: le dossier complet, lui, reste le tien.</p>
+        <p style="font-size:.92rem; color:var(--muted); margin-top:.7rem">Le code sert <b>une seule fois</b> et reste valable <b>vingt-quatre heures</b>, à partir du moment où tu le crées. Passé ce délai, il s’éteint, et <b>il n’y en aura pas d’autre</b>. Rien ne presse&nbsp;: crée-le le jour où tu es prêt·e à l’envoyer.</p>
+        <div class="comp-actions">
+          <button class="btn btn-primary" id="btnCreerCadeau">Créer mon code <span class="ico" aria-hidden="true">✦</span></button>
+        </div>
+        <div id="cadeauResultat" hidden>
+          <div class="cadeau-code" id="cadeauCode"></div>
+          <p class="cadeau-delai" id="cadeauDelai"></p>
+          <div class="comp-actions"><button class="btn btn-primary" id="btnCopierCadeau">Copier le message <span class="ico" aria-hidden="true">⧉</span></button></div>
+        </div>
+        <p class="copy-feedback" id="cadeauInfo" role="status"></p>
+      </div></div></div>
+    </div>
+
+    <div class="callout callout-heart" style="margin-top:1.1rem">
+      <span class="emo" aria-hidden="true">☾</span>
+      <p><strong>Un dernier mot.</strong> @@DOUCE@@ Ce n’est pas un aveu de faiblesse&nbsp;: c’est prendre soin de toi.</p>
+    </div>
+
+    <div class="res-actions">
+      <button class="btn btn-primary" id="btnCarte" hidden>Créer ma carte à partager <span class="ico" aria-hidden="true">✦</span></button>
+      <button class="btn btn-ghost" id="btnCopy">Copier mes résultats <span class="ico" aria-hidden="true">⧉</span></button>
+      <button class="btn btn-ghost" id="btnRestart">Refaire le test <span class="ico" aria-hidden="true">↺</span></button>
+    </div>
+    <div class="copy-feedback" id="copyFeedback" role="status"></div>
+
+    <div class="carte-promo no-print" id="cartePromo" hidden>
+      <h3 class="carte-promo-titre">Ton ciel, en image</h3>
+      <p>Tes résultats peuvent devenir une image, fabriquée ici même, dans ton navigateur. Au format post&nbsp;: ta roue, tes trois énergies les plus présentes et ton élément dominant. Au format story&nbsp;: ton énergie la plus présente, en grand. À garder, à relire dans six mois, ou à envoyer à quelqu’un.</p>
+      <p class="carte-promo-note">Elle fait partie du dossier complet.</p>
+      <button class="btn btn-primary" id="btnCartePromo">Découvrir le dossier complet <span class="ico" aria-hidden="true">→</span></button>
+    </div>
+
+    <div class="soutien">
+      <p>Tes énergies bougent avec les jours&nbsp;: ton journal les suit, moment après moment.</p>
+      <div style="display:flex; gap:.7rem; justify-content:center; flex-wrap:wrap">
+        <button class="btn btn-ghost" id="btnVersJournal">Ajouter un moment à mon journal <span class="ico" aria-hidden="true">→</span></button>
+        <button class="btn btn-ghost" id="btnRappel">Me créer un rappel quotidien <span class="ico" aria-hidden="true">⬇</span></button>
+        <button class="btn btn-ghost" id="btnInstaller" hidden>Installer l’application <span class="ico" aria-hidden="true">→</span></button>
+      </div>
+      <p style="font-size:.82rem; color:var(--faint); margin-top:.7rem" id="rappelNote"></p>
+    </div>
+  </section>
+</main>
+
+<!-- Les fenêtres vivent hors de <main> : dedans, son contexte d'empilement les
+     passait sous la navigation (piège rencontré sur Boussole). -->
+<div class="carte-overlay" id="rapportOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="rapportTitre">
+  <div class="carte-box">
+    <h3 id="rapportTitre" style="font-size:1.6rem; margin:.4rem 0 .6rem">Débloquer mon accès</h3>
+    <p class="carte-hint" style="margin-top:0" id="cleHint"></p>
+    <input class="cle-input" id="cleLicence" aria-label="Référence d’achat ou code cadeau" placeholder="cs_live_…" autocomplete="off" spellcheck="false">
+    <div class="carte-actions">
+      <button class="btn btn-primary" id="btnValiderCle">Débloquer <span class="ico" aria-hidden="true">✦</span></button>
+      <button class="btn btn-ghost" id="btnFermerCle">Fermer <span class="ico" aria-hidden="true">✕</span></button>
+    </div>
+    <p class="copy-feedback" id="cleStatut" role="status"></p>
+  </div>
+</div>
+
+<div class="carte-overlay" id="paywallOverlay" hidden role="dialog" aria-modal="true" aria-labelledby="paywallTitre">
+  <div class="carte-box paywall-box">
+    <div class="paywall-glyphs" id="paywallGlyphs" aria-hidden="true"></div>
+    <h3 class="paywall-titre" id="paywallTitre" tabindex="-1">Tes résultats sont prêts</h3>
+    <p class="paywall-sous">Parcours terminé, douze énergies mesurées&nbsp;: ton ciel du moment est calculé. Tes trois énergies les plus présentes t’attendent juste derrière. Choisis ta formule pour les découvrir.</p>
+    <div class="paywall-appli">
+      <label>
+        <input type="checkbox" id="pwAppli">
+        <span>Préviens-moi quand l’application sort.
+          <span class="detail">Une application est en préparation. On utilisera seulement l’adresse e-mail que tu donneras à Stripe au moment du paiement, et uniquement pour t’annoncer sa sortie.</span>
+        </span>
+      </label>
+    </div>
+    <label class="cgv-case" id="pwCgvBox"><input type="checkbox" id="pwCgv"><span>J’accepte les <a href="legal/cgv.html" target="_blank" rel="noopener">conditions de vente</a> et je renonce à mon droit de rétractation pour un accès immédiat.</span></label>
+    <div class="offres">
+      <div class="offre">
+        <h4>Tes résultats</h4>
+        <div class="offre-prix" id="pwPrixResultats">1,99 €</div>
+        <div class="offre-ttc">TTC, paiement unique</div>
+        <ul>
+          <li>Ta roue et le classement des douze énergies</li>
+          <li>L’analyse personnalisée de chaque énergie</li>
+          <li>Ton ciel du moment et la synthèse croisée</li>
+        </ul>
+        <a class="btn btn-ghost" id="btnPayerResultats" target="_blank" rel="noopener">Voir mes résultats <span class="ico" aria-hidden="true">→</span></a>
+      </div>
+      <div class="offre offre-star">
+        <span class="offre-badge" id="pwBadgeDossier">Tarif de lancement</span>
+        <h4>Résultats + Dossier complet</h4>
+        <div class="offre-prix" id="pwPrixDossier">5,99 €</div>
+        <div class="offre-ttc">TTC, paiement unique</div>
+        <ul>
+          <li><b>Tout ce qui précède</b>, et en plus&nbsp;:</li>
+          <li>12 fiches approfondies · 36 pratiques</li>
+          <li>Tes croisements décodés</li>
+          <li>Ton plan personnalisé de 30 jours</li>
+          <li>L’export PDF, ta copie à garder</li>
+          <li>Ta carte à partager · post et story</li>
+        </ul>
+        <a class="btn btn-primary" id="btnPayerDossier" target="_blank" rel="noopener">Tout débloquer <span class="ico" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="skip-zone" id="skipZone" hidden>
+      <button class="btn btn-ghost" id="btnSkipPaiement">Passer le paiement — version test <span class="ico" aria-hidden="true">→</span></button>
+      <p>Le site est en phase de test&nbsp;: le paiement n’est pas encore activé, et ce bouton ouvre tout.</p>
+    </div>
+    <div class="paywall-foot">
+      <button class="linklike" id="btnPaywallCle">J’ai déjà payé</button>
+      <span aria-hidden="true" id="pwCadeauSep" hidden>·</span>
+      <button class="linklike" id="btnPaywallCadeau" hidden>On m’a offert un code</button>
+      <span aria-hidden="true">·</span>
+      <button class="linklike" id="btnPaywallRetour">Revenir au questionnaire</button>
+    </div>
+    <p class="carte-hint">Paiement sécurisé par Stripe · tes réponses ne quittent jamais ton navigateur. <b>Garde cet onglet ouvert</b>&nbsp;: il se débloquera tout seul après le paiement.</p>
+  </div>
+</div>
+
+<div class="carte-overlay" id="carteOverlay" hidden role="dialog" aria-modal="true" aria-label="Ta carte à partager">
+  <div class="carte-box">
+    <div class="carte-formats" role="radiogroup" aria-label="Format de la carte">
+      <button class="fmt sel" data-fmt="post" role="radio" aria-checked="true">Post · 4:5</button>
+      <button class="fmt" data-fmt="story" role="radio" aria-checked="false">Story · 9:16</button>
+    </div>
+    <div class="roulette" id="roulette" hidden>
+      @@ROULETTE@@
+      <p>La roue tourne…</p>
+    </div>
+    <img id="carteImg" alt="Ta carte Boussole céleste">
+    <div class="carte-actions">
+      <button class="btn btn-primary" id="btnCarteDl">Télécharger l’image <span class="ico" aria-hidden="true">⬇</span></button>
+      <button class="btn btn-ghost" id="btnCartePartage" hidden>Partager <span class="ico" aria-hidden="true">↗</span></button>
+      <button class="btn btn-ghost" id="btnCarteFermer">Fermer <span class="ico" aria-hidden="true">✕</span></button>
+    </div>
+    <p class="carte-hint">Si le téléchargement ne démarre pas&nbsp;: appui long sur l’image (ou clic droit), puis «&nbsp;Enregistrer l’image&nbsp;».</p>
+  </div>
+</div>
+
+<footer>
+  <p><b>Boussole céleste</b> · un langage pour réfléchir à soi, pas une prédiction.</p>
+  <p>Tes réponses et ton journal ne quittent jamais ton navigateur · ne remplace l’avis d’aucun professionnel.</p>
+  <p style="margin-top:.6rem">
+    <button class="linklike" id="btnFooterMethode">La méthode et ses limites</button> ·
+    <button class="linklike" id="btnFooterEnergies">Les douze énergies</button> ·
+    <a class="linklike" href="legal/mentions-legales.html">Mentions légales</a> ·
+    <a class="linklike" href="legal/confidentialite.html">Confidentialité</a>
+  </p>
+</footer>

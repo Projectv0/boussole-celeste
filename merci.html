@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Merci · Boussole céleste</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F1424">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preload" href="polices/jost-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="polices/cormorant-garamond-600-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="polices/polices.css">
+<link rel="stylesheet" href="guide/style.css">
+<style>
+  main{ max-width:36rem; text-align:center; padding-top:4rem; }
+  .grand{ width:4rem; height:4rem; margin:0 auto 1rem; }
+  .cle-boite{ margin:1.6rem 0; padding:1.1rem 1.2rem; border-radius:1.1rem; background:var(--card); border:1px dashed var(--hairline-strong); font-size:.92rem; word-break:break-all; color:var(--muted); }
+  .cle-boite b{ display:block; color:var(--ink); font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; margin-bottom:.5rem; }
+  .cle-boite small{ display:block; margin-top:.7rem; font-size:.82rem; color:var(--faint); word-break:normal; }
+  .copier{ margin-top:.8rem; padding:.45rem 1rem; border-radius:.7rem; cursor:pointer; border:1px solid var(--hairline-strong); background:var(--card); color:var(--ink); font:inherit; font-size:.86rem; }
+  .etapes{ text-align:left; margin:1.6rem 0; padding-left:1.2rem; }
+  .etapes li{ margin-bottom:.6rem; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <a class="marque" href="./"><span class="logo"><img src="favicon.svg" alt="" width="32" height="32"></span> Boussole céleste</a>
+</div>
+
+<main>
+  <img class="grand" src="favicon.svg" alt="" width="64" height="64">
+  <h1 id="titre">Merci&nbsp;!</h1>
+  <p class="chapeau" id="sous">Ton accès est activé.</p>
+
+  <div class="encart doux" id="retour" hidden>
+    <strong>Retourne à l’onglet du test</strong>
+    Il s’est débloqué tout seul&nbsp;: tes résultats t’y attendent. Tu peux fermer cette page.
+  </div>
+
+  <div class="encart attention" id="refaire" hidden>
+    <strong>L’onglet du test n’est plus ouvert&nbsp;?</strong>
+    Aucun souci&nbsp;: ton accès est enregistré sur cet appareil. Refais simplement le test, et tes résultats s’afficheront directement à la fin.
+  </div>
+
+  <div class="cle-boite" id="cleBoite" hidden>
+    <b>Ta référence d’achat</b>
+    <span id="cleTexte"></span><br>
+    <button class="copier" id="btnCopier" type="button">Copier</button>
+    <small>Garde-la&nbsp;: c’est elle qui rouvre ton accès si tu changes d’appareil, ou si ton navigateur efface ses données.</small>
+    <small>Avant de payer, tu as accepté les <a href="legal/cgv.html">conditions de vente</a> et renoncé à ton droit de rétractation pour un accès immédiat.</small>
+  </div>
+
+  <ol class="etapes" id="etapes" hidden>
+    <li>Ouvre le site sur l’appareil où tu veux lire tes résultats.</li>
+    <li>Fais le test, ou reprends-le.</li>
+    <li>À la fin, clique sur <b>«&nbsp;J’ai déjà payé&nbsp;»</b> et colle la référence ci-dessus.</li>
+  </ol>
+
+  <div class="encart doux" id="appli" hidden>
+    <strong>On te préviendra pour l’application</strong>
+    On t’écrira une fois, à l’adresse de ton paiement, le jour de sa sortie, et pour rien d’autre.
+  </div>
+
+  <a class="bouton" href="./" id="btnRetour">Revenir au test <span aria-hidden="true">→</span></a>
+</main>
+
+<footer>
+  <p><a href="./">Boussole céleste</a> · <a href="legal/mentions-legales.html">Mentions légales</a> · <a href="legal/cgv.html">Conditions de vente</a></p>
+  <p>Une question sur ta commande&nbsp;? <a href="mailto:contact@boussole-celeste.fr">contact@boussole-celeste.fr</a></p>
+</footer>
+
+<script>
+"use strict";
+/* Page de retour après un paiement Stripe : ?formule=resultats|dossier&session_id=cs_…
+   On n'écrit dans le navigateur que ce que le Worker confirme. L'onglet du test, s'il est
+   encore ouvert, l'apprend par l'événement « storage » et se débloque tout seul. */
+const ACCES_KEY = "celeste.acces.v1";
+/* DOIT rester identique à VENTE.verification dans site/app.js. Tant qu'elle est vide, on
+   retombe sur le paramètre d'URL : acceptable seulement tant qu'aucune vente n'a lieu
+   (piège Boussole : « ?formule=dossier » sans paiement aurait suffi). */
+const VERIFICATION = "";
+const CONTACT = "contact@boussole-celeste.fr";
+
+const p = new URLSearchParams(location.search);
+const formule = p.get("formule") === "dossier" ? "dossier" : p.get("formule") === "resultats" ? "resultats" : null;
+const session = p.get("session_id") || "";
+const $ = s => document.querySelector(s);
+const REF = /^cs_(live|test)_[A-Za-z0-9]{10,}$/;
+
+async function niveauVerifie(){
+  if(!VERIFICATION || !REF.test(session)) return null;
+  try{
+    const r = await fetch(VERIFICATION + "?session_id=" + encodeURIComponent(session));
+    if(!r.ok) return null;
+    const d = await r.json();
+    if(!d || !d.valide) return null;
+    return d.niveau === "dossier" ? "dossier" : d.niveau === "resultats" ? "resultats" : null;
+  }catch(_){ return null; }
+}
+
+if(!formule){
+  $("#titre").textContent = "Page de confirmation";
+  $("#sous").textContent = `Cette page s’affiche après un achat. Si tu viens de payer et que rien ne s’est passé, écris à ${CONTACT}.`;
+}else{
+  try{ if(localStorage.getItem("celeste.appli.v1") === "1") $("#appli").hidden = false; }catch(_){}
+  (async () => {
+    const verifie = await niveauVerifie();
+    /* Sans session, rien n'est accordé, même en phase de test. */
+    const niveau = VERIFICATION ? verifie : (REF.test(session) ? formule : null);
+    if(!niveau){
+      $("#titre").textContent = "Paiement non confirmé";
+      $("#sous").textContent = `Nous n’avons pas pu confirmer ce paiement. Si tu as bien été débité·e, écris à ${CONTACT} avec ${session ? "la référence ci-dessous" : "ton reçu Stripe"} : l’accès sera débloqué à la main.`;
+      return;
+    }
+    let enregistre = false;
+    try{ localStorage.setItem(ACCES_KEY, JSON.stringify({ niveau, session, d: new Date().toISOString() })); enregistre = true; }catch(_){}
+    $("#sous").textContent = `Formule « ${niveau === "dossier" ? "Résultats + dossier complet" : "Tes résultats"} » activée.`;
+    if(enregistre){ $("#retour").hidden = false; $("#refaire").hidden = false; }
+    else $("#etapes").hidden = false;
+  })();
+  /* La référence est la seule trace que l'acheteur emporte : elle s'affiche toujours. */
+  $("#cleBoite").hidden = !session;
+  $("#cleTexte").textContent = session;
+  $("#btnCopier").onclick = async () => {
+    try{ await navigator.clipboard.writeText(session); $("#btnCopier").textContent = "Copiée"; }
+    catch(_){
+      const r = document.createRange(); r.selectNodeContents($("#cleTexte"));
+      const sel = getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      $("#btnCopier").textContent = "Sélectionnée : copie-la";
+    }
+  };
+}
+</script>
+</body>
+</html>

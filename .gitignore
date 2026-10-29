@@ -1,0 +1,22 @@
+# Rien de privé, rien de lourd, rien d'autrui dans un dépôt public.
+societe/
+.cache/
+__pycache__/
+.DS_Store
+.wrangler/
+node_modules/
+
+# images de travail, régénérables (python3 da/planches.py)
+da/*.png
+
+# polices TTF des scripts PIL (téléchargées depuis github.com/google/fonts, licence OFL) ;
+# le site, lui, sert ses propres .woff2 depuis polices/
+polices/ttf/
+
+# ateliers de publication : les images, vidéos et musiques produites restent hors dépôt
+**/sortie/
+**/illustrations/
+**/*.mp4
+**/*.mp3
+**/*.wav
+.claude/
