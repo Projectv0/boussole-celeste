@@ -151,3 +151,9 @@ footer p + p{ margin-top:.4rem; }
   *{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
   html{ scroll-behavior:auto; }
 }
+
+/* ————— La page pilier ————— */
+.grille.pilier a{ align-items:flex-start; font-weight:400; }
+.grille.pilier a b{ font-weight:600; color:var(--ink); }
+.grille.pilier small{ display:block; margin-top:.2rem; font-size:.84rem; line-height:1.45; color:var(--muted); }
+.grille.pilier .puce{ margin-top:.25rem; }

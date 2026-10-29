@@ -1,7 +1,7 @@
 /* Service worker — met le site en cache pour un usage hors connexion.
    Stratégie : réseau d'abord (pour recevoir les mises à jour), cache en secours.
    Le nom du cache change à chaque déploiement (outils/construire.py, site/VERSION). */
-const CACHE = "celeste-v1";
+const CACHE = "celeste-v2";
 const ESSENTIELS = ["./", "./index.html", "./merci.html", "./manifest.webmanifest",
                     "./icone-192.png", "./icone-512.png", "./favicon.svg",
                     /* les polices sont hébergées ici : sans elles en cache, la page hors

@@ -52,7 +52,7 @@ PIED = """</article>
 </main>
 
 <footer>
-  <p><a href="../">Boussole céleste</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a>{lien_cgv}</p>
+  <p><a href="../">Boussole céleste</a> · <a href="../guide/">Le guide</a> · <a href="mentions-legales.html">Mentions légales</a> · <a href="confidentialite.html">Confidentialité</a>{lien_cgv}</p>
   <p>Un langage pour réfléchir à soi, pas une prédiction. Ne remplace l’avis d’aucun professionnel.</p>
 </footer>
 

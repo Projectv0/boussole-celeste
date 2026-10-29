@@ -144,6 +144,7 @@ function renderEnergyCards(){
         <p class="fn"><b>À quoi elle sert&nbsp;:</b> ${e.sert}</p>
         <p class="ex"><b>Comment elle se manifeste&nbsp;:</b> ${e.manifeste}</p>
         <p class="lo"><b>Sa lumière&nbsp;:</b> ${e.lumiere}. <b>Son ombre&nbsp;:</b> ${e.ombre}. <b>Planète&nbsp;:</b> ${e.maitre}.</p>
+        <p class="lo"><a href="guide/energie-${e.id}.html" target="_blank" rel="noopener">Lire l’article du guide sur l’énergie ${deVerbe(e.verbe)}</a></p>
       </div>
     </details>`).join("");
 }
@@ -497,7 +498,9 @@ function renderResults(notes){
     const nm = mesuree(e.id), bd = palierDe(notes[e.id]), b = BANDES[bd];
     /* Un texte d'analyse décrit une vie intérieure : le servir sur une énergie non
        mesurée, ce serait décrire ce qu'on n'a pas mesuré. */
-    const corps = nm ? `<p>${e.paliers[bd]}</p>`
+    /* Le lien s'ouvre dans un nouvel onglet : quitter cette page effacerait les résultats. */
+    const guide = `<p style="margin-top:.6rem"><a href="guide/energie-${e.id}.html" target="_blank" rel="noopener">Pour aller plus loin : l’article du guide sur l’énergie ${deVerbe(e.verbe)}</a></p>`;
+    const corps = nm ? `<p>${e.paliers[bd]}</p>${guide}`
       : `<p>Aucune scène de ton parcours n’a mesuré cette énergie. Le test n’a donc rien à en dire, et surtout pas qu’elle serait absente de ta vie.</p>`;
     return `<details class="ana${nm ? "" : " absente"}"${k < 3 && nm ? " open" : ""}>
       <summary>

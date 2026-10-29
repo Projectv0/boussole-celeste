@@ -10,8 +10,8 @@ de l'argent ou un arbitrage, donc toi. Je le tiens à jour à chaque livraison.*
 | 1. Lire Boussole, poser les questions | ✅ 29/10 |
 | 2. Nom et direction artistique | ✅ **Boussole céleste**, thème **nuit étoilée** (29/10) |
 | 3. Les contenus | ✅ validés le 29/10 (`donnees/RELECTURE.md`) |
-| 4. Le site, en mode test | ⏸ **à tester sur ton téléphone** |
-| 5. Le guide (40 articles) | à venir |
+| 4. Le site, en mode test | ✅ testé sur téléphone le 30/10 |
+| 5. Le guide (39 articles + la page pilier) | ⏸ **à lire : cinq articles au hasard** |
 | 6. Le Worker (vérification, mesure, code à offrir) | code prêt dans `worker/`, à déployer |
 | 7. Publications et vidéos | à venir |
 
@@ -50,7 +50,21 @@ le même risque que pour Boussole émotionnelle. Un dépôt **semi-figuratif** (
 roue) le réduit. Classes à viser : 9, 41, 42. Le dépôt se fait **au nom de la SAS**. Les
 noms de société n'ont pas été vérifiés : data.inpi.fr affichait une vérification anti-robot.
 
-## A4 · Les comptes réseaux — plus tard, à l'étape 7
+## A4 · Search Console et Bing — dès que le domaine répond
+
+Le guide compte 39 articles et un sitemap de 41 adresses. Tant que le domaine n'est pas
+branché, toutes les pages portent `noindex` : rien ne s'indexe sur l'adresse provisoire. Le
+jour où `boussole-celeste.fr` répond, je retire `noindex` et je republie. Ensuite :
+
+1. Dans **Google Search Console**, ajoute une propriété à préfixe d'URL
+   `https://boussole-celeste.fr/`, méthode « balise HTML ». Donne-moi la balise : je la pose
+   dans l'accueil, puis tu cliques sur « Valider ». Ensuite, envoie le sitemap
+   `https://boussole-celeste.fr/sitemap.xml`.
+2. Même chose dans **Bing Webmaster Tools**, en ajoutant le site à la main. N'accepte ni
+   l'import depuis Search Console, ni la connexion à IONOS : ce sont les deux voies que tu
+   avais écartées pour Boussole.
+
+## A5 · Les comptes réseaux — plus tard, à l'étape 7
 
 Ton choix du 29/10 : des comptes à part. Instagram et TikTok, que tu crées toi-même le
 moment venu. Je te préparerai les noms, la bio et la photo de profil (`logo-instagram.png`
