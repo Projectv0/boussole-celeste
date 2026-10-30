@@ -34,7 +34,7 @@ const VENTE = {
   verification: "",
   /* Codes cadeaux : ne s'allument qu'avec la vérification (il faut Stripe pour savoir
      si le dossier a été payé). */
-  cadeau: ""
+  cadeau: "https://boussole-celeste.projectv0-0.workers.dev/cadeau"
 };
 const cadeauActif = () => !!VENTE.cadeau && !!VENTE.verification;
 /* ?apercu=1 montre la fenêtre de fin sans faire le test. Adossé à modeTest : le jour de
@@ -47,7 +47,7 @@ const paywallActif = () => APERCU || VENTE.modeTest || (VENTE.actif && !!VENTE.l
 /* ————— Mesure d'audience —————
    Un jour, un nom d'événement, et rien d'autre : pas de cookie, pas d'identifiant,
    pas d'adresse IP. Tant que MESURE est vide, rien ne part. */
-const MESURE = "";
+const MESURE = "https://boussole-celeste.projectv0-0.workers.dev/mesure";
 function mesurer(e, p){
   if(!MESURE) return;
   try{
@@ -1287,7 +1287,7 @@ async function verifierAchat(ref){
   if(!VENTE.verification) return "indisponible";
   try{
     const r = await fetch(VENTE.verification + "?session_id=" + encodeURIComponent(ref));
-    if(!r.ok) return r.status >= 500 ? "indisponible" : null;
+    if(!r.ok) return r.status >= 500 || r.status === 429 ? "indisponible" : null;
     const d = await r.json();
     if(!d || !d.valide) return null;
     return d.niveau === "dossier" ? "dossier" : d.niveau === "resultats" ? "resultats" : null;

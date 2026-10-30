@@ -1,6 +1,6 @@
 # Ce que tu as à faire — Boussole céleste
 
-*État au 29 octobre 2026. Ce document ne liste que ce qui demande un compte, une identité,
+*État au 30 octobre 2026. Ce document ne liste que ce qui demande un compte, une identité,
 de l'argent ou un arbitrage, donc toi. Je le tiens à jour à chaque livraison.*
 
 ## Où on en est
@@ -11,14 +11,17 @@ de l'argent ou un arbitrage, donc toi. Je le tiens à jour à chaque livraison.*
 | 2. Nom et direction artistique | ✅ **Boussole céleste**, thème **nuit étoilée** (29/10) |
 | 3. Les contenus | ✅ validés le 29/10 (`donnees/RELECTURE.md`) |
 | 4. Le site, en mode test | ✅ testé sur téléphone le 30/10 |
-| 5. Le guide (39 articles + la page pilier) | ⏸ **à lire : cinq articles au hasard** |
-| 6. Le Worker (vérification, mesure, code à offrir) | code prêt dans `worker/`, à déployer |
+| 5. Le guide (39 articles + la page pilier) | ✅ validé le 30/10 |
+| 6. Le Worker (vérification, mesure, code à offrir) | ⏸ **en ligne, il manque ta clé de lecture (A6)** |
 | 7. Publications et vidéos | à venir |
 
 **Le site ne vend rien aujourd'hui** : `modeTest: true`, aucun lien de paiement. La fenêtre
 de fin de test s'affiche, et le bouton « Passer le paiement — version test » ouvre tout.
 Tant que le domaine n'est pas branché, la page demande aux moteurs de ne pas l'indexer
 (`noindex`) : elle s'ouvrira d'elle-même le jour où le fichier `CNAME` existera.
+
+**Le compteur de visites tourne** depuis le 30 octobre, sur
+`https://boussole-celeste.projectv0-0.workers.dev`. La vérification d'achat, elle, attend Stripe.
 
 ---
 
@@ -29,8 +32,9 @@ Tant que le domaine n'est pas branché, la page demande aux moteurs de ne pas l'
 `boussole-celeste.fr` **et** `boussole-celeste.com` étaient libres le 29 octobre 2026.
 Achète-les chez IONOS, comme Boussole. Je ne touche ni à l'achat, ni à la zone DNS.
 
-Quand c'est fait, dis-le-moi : je pose le fichier `CNAME`, et je te donne les
-enregistrements DNS à créer pour GitHub Pages (les mêmes que pour Boussole).
+Quand c'est fait, dis-le-moi : je pose le fichier `CNAME`, je retire l'adresse provisoire
+de la liste des origines du Worker, et je te donne les enregistrements DNS à créer pour
+GitHub Pages (les mêmes que pour Boussole).
 
 ## A2 · L'adresse de contact
 
@@ -70,6 +74,19 @@ Ton choix du 29/10 : des comptes à part. Instagram et TikTok, que tu crées toi
 moment venu. Je te préparerai les noms, la bio et la photo de profil (`logo-instagram.png`
 est prêt).
 
+## A6 · La clé de lecture du compteur
+
+Une commande, à lancer une fois. Elle tire une clé au hasard, la range dans
+`~/.config/boussole-celeste/mesure.cle`, la pose sur le Worker, puis affiche les chiffres.
+La clé ne s'affiche nulle part, et je ne la vois pas.
+
+```bash
+mkdir -p ~/.config/boussole-celeste && chmod 700 ~/.config/boussole-celeste && (umask 077; openssl rand -hex 24 | tr -d '\n' > ~/.config/boussole-celeste/mesure.cle) && (cd /Users/cavalier/Dev/Astrologie/worker && wrangler secret put MESURE_CLE < ~/.config/boussole-celeste/mesure.cle) && python3 /Users/cavalier/Dev/Astrologie/outils/mesure.py
+```
+
+Ensuite, pour lire tes chiffres : `python3 outils/mesure.py` (30 jours), ou
+`python3 outils/mesure.py 90`.
+
 ---
 
 # B — Pouvoir vendre (bloqué par la société)
@@ -102,7 +119,26 @@ rétractation pour un accès immédiat. »
 > tout le reste. **Le Worker de Boussole émotionnelle, lui, se fie encore au montant** : le
 > jour où les deux vendent sur le même compte, un achat de Boussole céleste ouvrirait
 > Boussole émotionnelle. À corriger là-bas avant la première vente des deux (une demi-heure
-> de travail, sur le modèle de `worker/verification.js` ici).
+> de travail, sur le modèle de `worker/verification.js` ici). Même chose pour sa limite de
+> débit : d'après la documentation de Cloudflare, une règle se pose sur un domaine géré chez
+> eux, pas sur une adresse en `workers.dev`. Ici, elle est dans le Worker (liaison `LIMITE`).
+
+### La clé Stripe, le jour venu
+
+Sur le compte Stripe de la SAS, crée une **clé restreinte**, en lecture seule : Checkout
+Sessions, PaymentIntents et Charges. Puis, au clavier :
+
+```bash
+cd /Users/cavalier/Dev/Astrologie/worker && wrangler secret put STRIPE_CLE
+```
+
+> Stripe n'existant pas encore, je n'ai pas pu vérifier ces droits sur une vraie clé. Le Worker
+> demande aussi les lignes de la commande et le paiement complet. Si le premier achat réel est
+> refusé alors que le paiement est passé, c'est la première chose à regarder.
+
+De mon côté : les identifiants de prix dans `worker/verification.js`, l'adresse du Worker dans
+`VENTE.verification` et dans `merci.html`, puis `modeTest: false`. Le code à offrir s'allume
+alors de lui-même.
 
 ---
 
@@ -111,3 +147,13 @@ rétractation pour un accès immédiat. »
 **Le contenu vendu est présent dans la page.** Comme sur Boussole, le verrou est côté
 navigateur : il cache, il n'empêche pas. À 1,99 € et 5,99 €, c'est une décision commerciale,
 pas un défaut.
+
+**La limite de débit est approximative.** Cloudflare le dit, et je l'ai mesuré le 30 octobre :
+en rafale, une trentaine de requêtes passent avant les premiers refus, puis une sur deux environ.
+Elle freine, sans arrêter net. Pour les codes à offrir, ce n'est pas un risque : mille milliards
+de combinaisons. Pour le compteur, quelqu'un d'obstiné pourrait le gonfler un peu.
+
+**Wrangler a accès à ton compte Cloudflare.** C'est l'ensemble standard, 29 permissions, plus
+large que ce dont le projet a besoin. Tu peux le retirer dans Cloudflare : My Profile → Access
+Management → Connected Applications. Il faudra alors refaire `wrangler login` avant tout
+déploiement du Worker.

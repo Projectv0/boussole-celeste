@@ -117,8 +117,6 @@ def confidentialite(sas):
 """ if sas else f"""  <h2>Qui est responsable</h2>
   <p>Le site est édité à titre non professionnel (voir les <a href="mentions-legales.html">mentions légales</a>). Pour toute question sur cette page : {mail()}.</p>
 """)
-    etat = "" if sas else """  <p><em>État au 29 octobre 2026 : ce comptage n’est pas encore en service. Rien n’est compté pour l’instant.</em></p>
-"""
     return f"""  <span class="meta">Confidentialité</span>
   <h1>Ce que devient ce que tu écris</h1>
   <p class="chapeau">Réponse courte&nbsp;: rien de ce que tu écris ne part. Ni tes réponses au test, ni ton journal, ni tes résultats, ni ton signe de naissance si tu le donnes. Voici le détail, sans langue de bois.</p>
@@ -152,8 +150,7 @@ def confidentialite(sas):
 
   <h2>Le comptage de fréquentation</h2>
   <p>Pour savoir si le site est lu, sept moments peuvent être comptés&nbsp;: l’ouverture de la page du test, l’ouverture d’une page du guide, le début du test, sa fin, l’affichage du choix de formule, le départ vers le paiement, et un clic sur la présentation du dossier. <strong>Ce qui est enregistré tient en deux informations&nbsp;: la date du jour et le nom du moment</strong>, plus l’adresse de la page pour une page du guide. Pas de cookie, pas d’identifiant, pas d’adresse IP conservée, pas d’empreinte de navigateur.</p>
-  <p>Rien ne permet donc de relier deux moments à la même personne. Aucune de tes réponses n’est jamais envoyée, à ce comptage pas plus qu’ailleurs. Il est hébergé chez <strong>Cloudflare</strong>, dans l’Union européenne.</p>
-{etat}
+  <p>Rien ne permet donc de relier deux moments à la même personne. Aucune de tes réponses n’est jamais envoyée, à ce comptage pas plus qu’ailleurs. Il est hébergé chez <strong>Cloudflare</strong>, dans l’Union européenne. Contre les abus, Cloudflare limite le nombre de requêtes qu’une même adresse IP peut envoyer à ce comptage, comme à la vérification d’un achat. Ce contrôle n’écrit rien dans la base du site.</p>
   <h2>Si tu achètes une formule</h2>
   <p>Le paiement est traité par <strong>Stripe</strong>, prestataire de paiement. Tes coordonnées bancaires sont saisies chez Stripe et ne passent jamais par ce site. Pour payer, tu donnes une adresse e-mail à Stripe&nbsp;: elle sert à t’envoyer ton reçu, et elle apparaît à l’éditeur dans le tableau de bord Stripe, avec le montant et la date. Base légale&nbsp;: l’exécution du contrat de vente. Conservation&nbsp;: dix ans pour les pièces comptables.</p>
   <p>Ton achat ne transmet rien de ton test&nbsp;: le dossier est fabriqué dans ton navigateur, il ne t’est pas envoyé par e-mail et l’éditeur n’en reçoit aucune copie.</p>

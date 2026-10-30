@@ -48,7 +48,7 @@ from plan_guide import SLUGS as PREVUS  # noqa: E402
 
 SITE = "https://boussole-celeste.fr"
 INDEXABLE = (RACINE / "CNAME").exists()
-MESURE = ""   # l'adresse du compteur, la même que dans site/app.js (étape 6)
+MESURE = "https://boussole-celeste.projectv0-0.workers.dev/mesure"   # la même que dans site/app.js
 EN = {e["id"]: e for e in E.ENERGIES}
 EL_DE = {e["id"]: e["element"] for e in E.ENERGIES}
 MOD_DE = {e["id"]: e["modalite"] for e in E.ENERGIES}

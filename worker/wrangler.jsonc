@@ -3,11 +3,10 @@
   // Même compte Cloudflare que Boussole émotionnelle, mais un Worker et une base à part :
   // les deux sites ne partagent ni compteur, ni codes, ni secrets.
   //
-  //   wrangler d1 create boussole-celeste          crée la base en Europe (option --location=weur
-  //                                                 ou la région EEUR, voir A-FAIRE), renvoie son identifiant
+  //   wrangler d1 create boussole-celeste --jurisdiction eu   la base, gardée dans l'UE
   //   wrangler d1 execute boussole-celeste --remote --file=schema.sql
   //   wrangler deploy                               met le Worker en ligne
-  //   wrangler secret put MESURE_CLE                à taper par Martial : la valeur ne s'affiche nulle part
+  //   wrangler secret put MESURE_CLE                à poser par Martial : voir A-FAIRE.md
   //   wrangler secret put STRIPE_CLE                idem, clé Stripe restreinte en lecture
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "boussole-celeste",
@@ -17,9 +16,12 @@
     {
       "binding": "MESURE",
       "database_name": "boussole-celeste",
-      // écrit à l'étape 6, après « wrangler d1 create »
-      "database_id": "A-RENSEIGNER"
+      "database_id": "8cf583ee-e518-4bc2-a5fd-7f608e63c022"
     }
+  ],
+  // Dix requêtes par minute et par adresse IP (voir tropDeRequetes dans verification.js).
+  "ratelimits": [
+    { "name": "LIMITE", "namespace_id": "2601", "simple": { "limit": 10, "period": 60 } }
   ],
   // Les secrets ne sont JAMAIS écrits ici : ce fichier est versionné.
   "observability": { "enabled": true }

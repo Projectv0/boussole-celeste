@@ -1,4 +1,4 @@
-/* Cloudflare Worker — deux services sur la même adresse.
+/* Cloudflare Worker — trois services sur la même adresse.
 
    1. VÉRIFICATION D'ACHAT
       GET /?session_id=cs_...  →  { valide, niveau }
@@ -7,20 +7,22 @@
 
    2. MESURE D'AUDIENCE
       POST /mesure             →  204, enregistre un événement anonyme
-      GET  /mesure?cle=…       →  le tableau, réservé à l'éditeur
+      GET  /mesure             →  le tableau, réservé à l'éditeur
+                                  (Authorization: Bearer <clé>, voir outils/mesure.py)
 
    3. CODE CADEAU
       POST /cadeau             →  { code, expire_le } pour un acheteur du dossier
       POST /cadeau/utiliser    →  { valide, niveau } pour celui qui le reçoit
 
-   Secrets à configurer dans Cloudflare (Settings → Variables → Secret) :
+   Secrets, posés par Martial avec « wrangler secret put » :
      STRIPE_CLE  clé restreinte Stripe, lecture seule sur les sessions Checkout
                  ET sur les PaymentIntents — sans la seconde, une session
                  remboursée resterait valable indéfiniment.
-     MESURE_CLE  mot de passe de ton choix, pour lire le tableau de mesure.
+     MESURE_CLE  mot de passe tiré au hasard, pour lire le tableau de mesure.
 
-   Liaison à ajouter (Settings → Bindings → D1) :
-     MESURE      base D1, avec la table créée par le SQL de worker/MESURE.md
+   Liaisons, déclarées dans wrangler.jsonc :
+     MESURE      base D1, avec les tables de schema.sql
+     LIMITE      dix requêtes par minute et par adresse IP
 
    Chaque service se tait si ce qu'il lui faut manque : sans STRIPE_CLE la
    vérification répond 501, sans la base D1 la mesure répond 204 sans rien écrire.
@@ -73,16 +75,39 @@ export default {
     };
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
 
+    /* Deux compteurs par adresse : un gonflage du tableau ne doit pas priver un
+       acheteur de sa vérification, s'ils partagent la même adresse. */
+    const ecriture = url.pathname === "/mesure" && req.method === "POST";
+    if (await tropDeRequetes(req, env, ecriture ? "mesure" : "achat"))
+      return ecriture ? vide(cors) : json({ valide: false, erreur: "trop de requêtes" }, 429, cors);
+
     if (url.pathname === "/mesure") {
-      return req.method === "POST"
+      return ecriture
         ? ecrireMesure(req, env, origine, cors)
-        : lireMesure(url, env, cors);
+        : lireMesure(req, url, env, cors);
     }
     if (url.pathname === "/cadeau")          return creerCadeau(req, env, origine, cors);
     if (url.pathname === "/cadeau/utiliser") return utiliserCadeau(req, env, origine, cors);
     return verifierAchat(url, env, cors);
   },
 };
+
+/* ————————————————————————— limitation de débit —————————————————————————
+   Une règle Cloudflare classique demande un domaine géré chez Cloudflare, ce que
+   n'est pas une adresse en workers.dev : la limite vit donc ici. Le compteur est
+   tenu par Cloudflare, par site de son réseau, et rien n'est écrit dans la base.
+   Si la liaison manque ou tombe en panne, on laisse passer : un acheteur ne doit
+   jamais être refusé à cause de la protection elle-même. */
+async function tropDeRequetes(req, env, quoi) {
+  if (!env.LIMITE) return false;
+  try {
+    const ip = req.headers.get("CF-Connecting-IP") || "";
+    const { success } = await env.LIMITE.limit({ key: `${quoi}:${ip}` });
+    return !success;
+  } catch (_) {
+    return false;
+  }
+}
 
 /* ————————————————————————— mesure d'audience —————————————————————————
    Ce qui est écrit : un jour, un nom d'événement, et pour les articles le chemin
@@ -131,8 +156,9 @@ function chemin(p) {
   return /^\/guide\/[a-z0-9-]{1,80}\.html$/.test(s) ? s : "";
 }
 
-async function lireMesure(url, env, cors) {
-  const cle = url.searchParams.get("cle") || "";
+async function lireMesure(req, url, env, cors) {
+  /* Dans un en-tête, pas dans l'adresse : une adresse finit dans les journaux. */
+  const cle = (req.headers.get("Authorization") || "").replace(/^Bearer /, "");
   if (!env.MESURE_CLE || !egal(cle, env.MESURE_CLE))
     return json({ erreur: "réservé à l'éditeur" }, 403, cors);
   if (!env.MESURE) return json({ erreur: "base non liée" }, 501, cors);
