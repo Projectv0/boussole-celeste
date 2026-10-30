@@ -439,7 +439,7 @@ def page_pilier(cat):
             + f'\n\n  <div class="encart doux">\n    <strong>{inline(pilier.ENCART[0])}</strong>\n    {inline(pilier.ENCART[1])}\n  </div>\n</article>\n\n'
             + f'<section class="cta">\n  <h2>{inline(pilier.CTA[0])}</h2>\n  <p>{inline(pilier.CTA[1])}</p>\n'
               f'  <a class="bouton" href="../">Faire le test <span aria-hidden="true">→</span></a>\n</section>\n\n'
-            + pied("/guide/"))
+            + pied("/guide/index.html"))
     return page, tous
 
 
