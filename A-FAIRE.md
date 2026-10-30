@@ -12,7 +12,7 @@ de l'argent ou un arbitrage, donc toi. Je le tiens à jour à chaque livraison.*
 | 3. Les contenus | ✅ validés le 29/10 (`donnees/RELECTURE.md`) |
 | 4. Le site, en mode test | ✅ testé sur téléphone le 30/10 |
 | 5. Le guide (39 articles + la page pilier) | ✅ validé le 30/10 |
-| 6. Le Worker (vérification, mesure, code à offrir) | ⏸ **en ligne, il manque ta clé de lecture (A6)** |
+| 6. Le Worker (vérification, mesure, code à offrir) | ✅ en ligne le 30/10 ; le contrôle d'achat réel attend Stripe (bloc B) |
 | 7. Publications et vidéos | à venir |
 
 **Le site ne vend rien aujourd'hui** : `modeTest: true`, aucun lien de paiement. La fenêtre
@@ -74,18 +74,16 @@ Ton choix du 29/10 : des comptes à part. Instagram et TikTok, que tu crées toi
 moment venu. Je te préparerai les noms, la bio et la photo de profil (`logo-instagram.png`
 est prêt).
 
-## A6 · La clé de lecture du compteur
+## A6 · Lire tes chiffres
 
-Une commande, à lancer une fois. Elle tire une clé au hasard, la range dans
-`~/.config/boussole-celeste/mesure.cle`, la pose sur le Worker, puis affiche les chiffres.
-La clé ne s'affiche nulle part, et je ne la vois pas.
+La clé de lecture est posée depuis le 30 octobre, et rangée dans
+`~/.config/boussole-celeste/mesure.cle`. Le compteur est parti de zéro ce jour-là.
 
 ```bash
-mkdir -p ~/.config/boussole-celeste && chmod 700 ~/.config/boussole-celeste && (umask 077; openssl rand -hex 24 | tr -d '\n' > ~/.config/boussole-celeste/mesure.cle) && (cd /Users/cavalier/Dev/Astrologie/worker && wrangler secret put MESURE_CLE < ~/.config/boussole-celeste/mesure.cle) && python3 /Users/cavalier/Dev/Astrologie/outils/mesure.py
+python3 /Users/cavalier/Dev/Astrologie/outils/mesure.py
 ```
 
-Ensuite, pour lire tes chiffres : `python3 outils/mesure.py` (30 jours), ou
-`python3 outils/mesure.py 90`.
+Ajoute `90` à la fin pour voir 90 jours au lieu de 30. Tes propres visites comptent aussi.
 
 ---
 
